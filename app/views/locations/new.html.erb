@@ -1,5 +1,17 @@
-<h1>What is your location?</h1>
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4
+                  col-sm-6 col-sm-offset-3
+                  col-cs-10 col-xs-offset-1
+                  ">
 
-<%= render 'form', location: @location %>
 
-<%= link_to 'Back', locations_path %>
+
+      <h1 class="text-center">Real Buses in Atlanta</h1>
+      <p>
+      Give us your location and we will tell you if there is a bus nearby.
+      </p>
+      <%= render 'form', location: @location %>
+    </div>
+  </div>
+</div>
