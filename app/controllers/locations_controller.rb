@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
+  include LocationsHelper
 
   # GET /locations
   # GET /locations.json
@@ -10,6 +11,12 @@ class LocationsController < ApplicationController
   # GET /locations/1
   # GET /locations/1.json
   def show
+    atl_bus_api_url = "http://developer.itsmarta.com/BRDRestService/RestBusRealTimeService/GetAllBus"
+    @buses = fetch_every_bus_in_atlanta(atl_bus_api_url)
+    @buses.select! do |bus|
+      is_nearby?(@location.latitude, @location.longitude, bus["LATITUDE"],
+      bus["LONGITUDE"])
+    end
   end
 
   # GET /locations/new
@@ -69,6 +76,6 @@ class LocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-      params.require(:location).permit(:street_address, :city, :latitude, :longitude, :float)
+      params.require(:location).permit(:street_address, :city, :latitude, :longitude)
     end
 end
