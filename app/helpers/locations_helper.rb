@@ -14,7 +14,7 @@ module LocationsHelper
     difference_long = user_long - bus_long.to_f
 
     distance = Math.sqrt(difference_lat ** 2 + difference_long ** 2)
-    distance <= max_distance  
+    distance <= max_distance
   end
 
 end
